@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
+import rehypeRaw from "rehype-raw";
 import { useEffect, useState } from "react";
 import { Grid, Skeleton, Typography } from "@mui/material";
 
@@ -65,7 +66,10 @@ export default function BlogReadPage() {
     <Skeleton variant="text" width="100px" />
   );
   const contents = ready ? (
-    <ReactMarkdown rehypePlugins={[rehypeHighlight]} className="font">
+    <ReactMarkdown
+      rehypePlugins={[rehypeHighlight, rehypeRaw]}
+      className="font"
+    >
       {post.contents}
     </ReactMarkdown>
   ) : (
